@@ -63,6 +63,19 @@ body {
     color: #333;
     text-align: center;
   }
+
+    .section h3 {
+    text-align: center;
+  }
+  
+  .section p{
+    color: #333;
+    text-align: center;
+  }
+
+  .section a{
+    text-align: center;
+  }
   
   .footer {
     background: #333;
