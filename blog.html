@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Our Blog</title>
+  <title>Blog - Our Personal Blog</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <li><a href="about.html">About Us</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="login.html">Log Out</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
       </ul>
     </nav>
     <header class="header">
@@ -37,5 +37,12 @@
 <footer class="footer">
   <p>© 2025 Nirbhay Kakani and M Bhanu Sashank Varma. All Rights Reserved.</p>
 </footer>
+<script>
+  function logout() {
+    
+    alert("You have been logged out!");
+    window.location.href = "login.html"; 
+  }
+</script>
 </body>
 </html>
