@@ -4,87 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Our Blog</title>
+  <title>Home - Our Blog</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" onclick="logout()">Log Out</a></li>
+    </ul>
+  </nav>
   <header class="header">
     <div class="container">
-      <h1>Welcome to Our Blog</h1>
+      <h1>Welcome to our Blog</h1>
       <p>Sharing thoughts, ideas, and experiences</p>
     </div>
   </header>
-
   <main>
-    <section id="register" class="section">
-      <h2>Register</h2>
-      <form onsubmit="return registerUser()">
-        <input type="text" id="regUsername" placeholder="Enter Username" required>
-        <input type="password" id="regPassword" placeholder="Enter Password" required>
-        <input type="text" id="adminCode" placeholder="Enter Admin Code (Optional)">
-        <button type="submit">Register</button>
-      </form>
-    </section>
-
-    <section id="login" class="section">
-      <h2>Login</h2>
-      <form onsubmit="return validateLogin()">
-        <input type="text" id="username" placeholder="Enter Username" required>
-        <input type="password" id="password" placeholder="Enter Password" required>
-        <button type="submit">Login</button>
-      </form>
+    <section id="home" class="section">
+      <h2>Home</h2>
+      <p>Welcome to our personal blog! Here, we share thoughts, ideas, and life experiences. Stay tuned!</p>
     </section>
   </main>
-
   <footer class="footer">
     <p>© 2025 Nirbhay Kakani and M Bhanu Sashank Varma. All Rights Reserved.</p>
   </footer>
-
   <script>
-    function registerUser() {
-      let username = document.getElementById("regUsername").value;
-      let password = document.getElementById("regPassword").value;
-      let adminCode = document.getElementById("adminCode").value;
-
-      if (username.trim() === "" || password.trim() === "") {
-        alert("Please fill in all fields.");
-        return false;
-      }
-
-      let userRole = (adminCode === "SECRET123") ? "admin" : "user";
-
-      localStorage.setItem("username", username);
-      localStorage.setItem("password", password);
-      localStorage.setItem("userRole", userRole);
-
-      alert(`Registration successful! You are now registered as a ${userRole}.`);
-      return false;
+    function logout() {
+    
+      alert("You have been logged out!");
+      localStorage.removeItem("isLoggedIn"); 
+      window.location.href = "login.html"; 
     }
-
-    function validateLogin() {
-      let enteredUsername = document.getElementById("username").value;
-      let enteredPassword = document.getElementById("password").value;
-
-      let storedUsername = localStorage.getItem("username");
-      let storedPassword = localStorage.getItem("password");
-      let storedRole = localStorage.getItem("userRole");
-
-      if (enteredUsername === storedUsername && enteredPassword === storedPassword) {
-        localStorage.setItem("isLoggedIn", "true");
-        alert(`Login successful! You are logged in as ${storedRole}.`);
-        window.location.href = "index.html";
-        return false;
-      } else {
-        alert("Invalid username or password.");
-        return false;
-      }
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
-      if (localStorage.getItem("isLoggedIn") === "true") {
-        window.location.href = "index.html";
-      }
-    });
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html"; 
+    }
+  });
   </script>
 </body>
 </html>
+
