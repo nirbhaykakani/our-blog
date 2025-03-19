@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +34,14 @@
   <script>
     function logout() {
       alert("You have been logged out!");
+      localStorage.removeItem("isLoggedIn"); 
       window.location.href = "login.html"; 
     }
+    document.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html"; 
+    }
+  });
   </script>
 </body>
 </html>
