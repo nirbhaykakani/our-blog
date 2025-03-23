@@ -8,14 +8,14 @@ Admins can create, manage, and delete blog posts.
 Users can read blogs and post comments.
 Blog posts are stored permanently in PostgreSQL via an API.
  Key Features:
-✅ User Authentication (Admins & Users)
-✅ Blog Creation (Admins Only)
-✅ Blog Search Functionality
-✅ Comment System
-✅ PostgreSQL-Based Blog Storage
-✅ RESTful API with Node.js
+User Authentication (Admins & Users)
+Blog Creation (Admins Only)
+Blog Search Functionality
+Comment System
+PostgreSQL-Based Blog Storage
+RESTful API with Node.js
 
-🛠️ Tech Stack
+Tech Stack
 Frontend: HTML, CSS, JavaScript
 Backend: Node.js (Express.js)
 Database: PostgreSQL
@@ -74,7 +74,7 @@ npm install
 node server.js
 ✅ The backend will now run at http://localhost:3000 🚀
 
-📌 4️⃣ How to Use the Blog Platform
+ 4️⃣ How to Use the Blog Platform
 🔹 Step 1: Open index.html in Your Browser
 
 🔹 Step 2: Login or Register
@@ -91,9 +91,9 @@ GET	    /getBlogs	Fetch all blogs
 POST	  /addBlog	Add a new blog
 
 6️⃣ Security & Best Practices
-✅ Never expose database credentials (Use .env for sensitive data).
-✅ Restrict admin access (Only trusted users should have the admin code).
-✅ Use pg with prepared statements (Avoid SQL injection risks).
+Never expose database credentials (Use .env for sensitive data).
+Restrict admin access (Only trusted users should have the admin code).
+Use pg with prepared statements (Avoid SQL injection risks).
 
 
 Author
