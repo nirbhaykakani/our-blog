@@ -25,7 +25,7 @@
 
   <main>
     <input type="text" id="searchBar" placeholder="Search blogs..." onkeyup="searchBlogs()">
-    
+
     <section id="blog" class="section">
       <h2>Blog Posts</h2>
     </section>
@@ -63,11 +63,15 @@
       blogs.forEach(blog => {
         let newPost = document.createElement("article");
         newPost.classList.add("blog-post");
+        newPost.setAttribute("id", `post-${blog.id}`);
         newPost.innerHTML = `
           <h3>${blog.title}</h3>
           <p>${blog.content}</p>
+          <button onclick="addComment(${blog.id})">Add Comment</button>
+          <div id="comments-${blog.id}" class="comments-section"></div>
         `;
         blogSection.appendChild(newPost);
+        loadComments(blog.id);
       });
     }
 
@@ -93,6 +97,25 @@
         if (result.success) {
           loadBlogs();
         }
+      }
+    }
+
+    async function loadComments(blogId) {
+      const response = await fetch(`http://localhost:3000/getComments/${blogId}`);
+      const comments = await response.json();
+      let commentSection = document.getElementById(`comments-${blogId}`);
+      commentSection.innerHTML = comments.map(c => `<p>${c.content}</p>`).join("");
+    }
+
+    async function addComment(blogId) {
+      let comment = prompt("Enter your comment:");
+      if (comment) {
+        await fetch("http://localhost:3000/addComment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ blog_id: blogId, content: comment })
+        });
+        loadComments(blogId);
       }
     }
 
