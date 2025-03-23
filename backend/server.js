@@ -1,4 +1,5 @@
 
+
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
@@ -42,6 +43,30 @@ app.post("/addBlog", async (req, res) => {
     res.status(500).json({ error: "Database error" });
   }
 });
+
+// Add a comment to a blog post
+app.post("/addComment", async (req, res) => {
+  const { blog_id, content } = req.body;
+  try {
+    await pool.query("INSERT INTO comments (blog_id, content) VALUES ($1, $2)", [blog_id, content]);
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+// Fetch comments for a blog post
+app.get("/getComments/:blog_id", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM comments WHERE blog_id = $1", [req.params.blog_id]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
 
 // Start server
 app.listen(3000, () => {
