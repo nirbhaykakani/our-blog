@@ -11,11 +11,11 @@ app.use(bodyParser.json());
 
 // PostgreSQL Database Connection
 const pool = new Pool({
-  user: "postgres", // Change if your PostgreSQL username is different
+  user: "postgres", 
   host: "localhost",
   database: "blogDB",
-  password: "Abhay132004#", // Replace with your actual password
-  port: 5432, // Default PostgreSQL port
+  password: "Abhay132004#", 
+  port: 5432, 
 });
 
 // Fetch all blogs
