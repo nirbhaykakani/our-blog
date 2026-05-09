@@ -80,10 +80,12 @@ app.post("/addComment", async (req, res) => {
       success: true,
       comment: result.rows[0],
     });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Database error" });
-  }
+  } catch (err) catch (err) {
+                  console.error("COMMENT ERROR:", err);
+                  res.status(500).json({
+                    error: "Database error",
+                    details: err.message
+                  });}
 });
 
 // Dynamic Port for Render
