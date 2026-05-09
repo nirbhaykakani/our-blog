@@ -49,6 +49,43 @@ app.post("/addBlog", async (req, res) => {
   }
 });
 
+// Fetch comments for a blog
+app.get("/getComments/:blogId", async (req, res) => {
+  const { blogId } = req.params;
+
+  try {
+    const result = await pool.query(
+      "SELECT * FROM comments WHERE blog_id = $1 ORDER BY created_at ASC",
+      [blogId]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+// Add a comment
+app.post("/addComment", async (req, res) => {
+  const { blog_id, content } = req.body;
+
+  try {
+    const result = await pool.query(
+      "INSERT INTO comments (blog_id, content) VALUES ($1, $2) RETURNING *",
+      [blog_id, content]
+    );
+
+    res.json({
+      success: true,
+      comment: result.rows[0],
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
 // Dynamic Port for Render
 const PORT = process.env.PORT || 3000;
 
