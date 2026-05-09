@@ -51,6 +51,8 @@ app.post("/addBlog", async (req, res) => {
 
 // Fetch comments for a blog
 app.get("/getComments/:blogId", async (req, res) => {
+  console.log("HIT /getComments:", req.params.blogId);
+
   const { blogId } = req.params;
 
   try {
@@ -61,8 +63,8 @@ app.get("/getComments/:blogId", async (req, res) => {
 
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Database error" });
+    console.error("COMMENT ERROR:", err);
+    res.status(500).json({ error: err.message });
   }
 });
 
