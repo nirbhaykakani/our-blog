@@ -1,10 +1,10 @@
-
 const express = require("express");
 const { Pool } = require("pg");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -32,6 +32,7 @@ app.get("/getBlogs", async (req, res) => {
 // Add a new blog
 app.post("/addBlog", async (req, res) => {
   const { title, content } = req.body;
+
   try {
     const result = await pool.query(
       "INSERT INTO blogs (title, content) VALUES ($1, $2) RETURNING *",
