@@ -55,7 +55,7 @@
     }
 
     async function loadBlogs() {
-      const response = await fetch("http://localhost:3000/getBlogs");
+      const response = await fetch("https://our-blog-backend-x7cx.onrender.com/getBlogs");
       const blogs = await response.json();
       let blogSection = document.getElementById("blog");
       blogSection.innerHTML = "<h2>Blog Posts</h2>";
@@ -87,7 +87,7 @@
       let content = prompt("Enter Blog Content:");
 
       if (title && content) {
-        const response = await fetch("http://localhost:3000/addBlog", {
+        const response = await fetch("https://our-blog-backend-x7cx.onrender.com/addBlog", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ title, content })
@@ -101,7 +101,7 @@
     }
 
     async function loadComments(blogId) {
-      const response = await fetch(`http://localhost:3000/getComments/${blogId}`);
+      const response = await fetch(`https://our-blog-backend-x7cx.onrender.com/getComments/${blogId}`);
       const comments = await response.json();
       let commentSection = document.getElementById(`comments-${blogId}`);
       commentSection.innerHTML = comments.map(c => `<p>${c.content}</p>`).join("");
@@ -110,7 +110,7 @@
     async function addComment(blogId) {
       let comment = prompt("Enter your comment:");
       if (comment) {
-        await fetch("http://localhost:3000/addComment", {
+        await fetch("https://our-blog-backend-x7cx.onrender.com/addComment", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ blog_id: blogId, content: comment })
